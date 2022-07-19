@@ -5,6 +5,7 @@ module.exports = {
         project: './tsconfig.json'
     },
     globals: {
-        document: true
+        document: true,
+        window: true,
     }
 }

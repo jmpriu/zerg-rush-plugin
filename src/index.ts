@@ -8,3 +8,4 @@ const a = document.getElementById('a');
 if (a !== null) {
     a.style.accentColor = 'blue'
 }
+console.log("Hi from the console")
