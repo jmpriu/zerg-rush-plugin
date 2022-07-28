@@ -1,5 +1,5 @@
-import { ZergRush } from './ZergRush'
-import { OverMind } from "./Overmind";
-export const zergRush = new ZergRush(10)
+import { OverMind } from "./components/OverMind";
 
-new OverMind().start();
+const overmind = new OverMind();
+overmind.onCreate();
+overmind.start();

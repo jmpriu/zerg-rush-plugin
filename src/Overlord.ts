@@ -1,10 +1,22 @@
 const elementHasAtLeastNChildren = (numberOfChildren: number) => (element: Element) => element.childNodes.length >= numberOfChildren
 
-const isInViewport = (element: Element): boolean => {
+const isValidTarget = (element: Element): boolean => {
     // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!element.getBoundingClientRect) {
         return false;
     }
+    if (!hasMinimumSize(element)) {
+        return false;
+    }
+    if (!isInViewport(element)) {
+        return false;
+    }
+    return true;
+}
+const hasMinimumSize = (element: Element): boolean => {
+    return ((element as HTMLElement)?.offsetWidth || 0) * ((element as HTMLElement)?.offsetHeight || 0) > 50;
+}
+const isInViewport = (element: Element): boolean => {
     const rect = element.getBoundingClientRect();
     return (
         rect.top >= 0 &&
@@ -55,6 +67,6 @@ export class Overlord {
         possibleTargets = this.identifyTargets();
         possibleTargets = this.removeTargetsInsideAnotherTarget(possibleTargets);
         possibleTargets = this.getTargetChildren(possibleTargets);
-        return possibleTargets.filter(isInViewport);
+        return possibleTargets.filter(isValidTarget);
     }
 }
