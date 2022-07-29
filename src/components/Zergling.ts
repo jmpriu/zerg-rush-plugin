@@ -1,4 +1,4 @@
-import { IComponent } from "../IComponent";
+import { IComponent } from "./IComponent";
 import { Target } from "./Target";
 
 const ZERGLING_SPEED = 400;
@@ -107,8 +107,10 @@ export class Zergling implements IComponent {
             yDiff = targetPos.top + Math.random() * targetSize.height - this.y,
             angle = Math.atan2(yDiff, xDiff);
 
-        this.dx = Math.cos(angle);
-        this.dy = Math.sin(angle);
+        const [v, u] = [Math.cos(angle), Math.sin(angle)];
+        const length = Math.sqrt(v*v + u* u);
+        this.dx = v / length;
+        this.dy = u / length;
     }
 
     createZergDomElement = (): HTMLDivElement => {

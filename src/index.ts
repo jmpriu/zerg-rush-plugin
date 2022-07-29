@@ -1,5 +1,6 @@
 import { OverMind } from "./components/OverMind";
-
+import { World } from "./World";
+const world = new World();
 const overmind = new OverMind();
-overmind.onCreate();
-overmind.start();
+world.registerComponent(overmind);
+world.resume();

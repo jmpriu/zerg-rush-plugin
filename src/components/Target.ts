@@ -1,4 +1,4 @@
-import { IComponent } from "../IComponent";
+import { IComponent } from "./IComponent";
 
 type Size = { width: number; height: number; }
 export class Target implements IComponent {

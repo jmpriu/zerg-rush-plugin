@@ -1,7 +1,6 @@
 const elementHasAtLeastNChildren = (numberOfChildren: number) => (element: Element) => element.childNodes.length >= numberOfChildren
 
 const isValidTarget = (element: Element): boolean => {
-    // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
     if (!element.getBoundingClientRect) {
         return false;
     }
@@ -21,7 +20,7 @@ const isInViewport = (element: Element): boolean => {
     return (
         rect.top >= 0 &&
         rect.left >= 0 &&
-        rect.bottom <= (!isNaN(window.innerHeight) && window.innerHeight || document.documentElement.clientHeight) &&
+        // rect.bottom <= (!isNaN(window.innerHeight) && window.innerHeight || document.documentElement.clientHeight) &&
         rect.right <= (!isNaN(window.innerWidth) && window.innerWidth || document.documentElement.clientWidth)
     );
 }
