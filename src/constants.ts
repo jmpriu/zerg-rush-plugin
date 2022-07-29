@@ -1,3 +1,4 @@
+export const PROBABILITY_TO_RUN = 10;
 export const MIN_ELEMENT_SIZE = 50;
 export const MAX_ELEMENT_HEALTH = 15000;
 export const IGNORE_HEIGHT_VIEWPORT = true;
