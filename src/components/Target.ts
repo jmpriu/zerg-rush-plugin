@@ -1,3 +1,4 @@
+import { MAX_ELEMENT_HEALTH } from "../constants";
 import { IComponent } from "./IComponent";
 
 type Size = { width: number; height: number; }
@@ -13,7 +14,7 @@ export class Target implements IComponent {
     public onCreate = () => {
         this._isAlive = true;
         const size = this.getSize();
-        this.totalLife = Math.min(size.width * size.height, 15000);
+        this.totalLife = Math.min(size.width * size.height, MAX_ELEMENT_HEALTH);
         this.life = this.totalLife;
     }
     

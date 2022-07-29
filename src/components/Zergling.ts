@@ -1,9 +1,7 @@
+import { ZERGLING_DPS, ZERGLING_FRAME_MILLISECONDS, ZERGLING_HEIGHT, ZERGLING_SPEED, ZERGLING_WIDTH } from "../constants";
 import { IComponent } from "./IComponent";
 import { Target } from "./Target";
 
-const ZERGLING_SPEED = 400;
-const ZERGLING_DPS = 5000;
-const ZERGLING_FRAME_MILLISECONDS = 150;
 
 export class Zergling implements IComponent {
     currentTarget: Target | null;
@@ -26,11 +24,11 @@ export class Zergling implements IComponent {
         this.currentTarget = null;
     }
 
-    getPosition =(): { x: number, y: number } => {
+    getPosition = (): { x: number, y: number } => {
         return { x: this.x, y: this.y }
     }
-    getSize = () : { width: number, height: number} => {
-        return { width: 10, height: 10}
+    getSize = (): { width: number, height: number } => {
+        return { width: ZERGLING_WIDTH, height: ZERGLING_HEIGHT }
     }
 
     onCreate = () => {
@@ -49,10 +47,7 @@ export class Zergling implements IComponent {
             font-size: large;
             content: "_";
           }
-          
         </style>`)
-
-
     }
 
     hasTarget = (): boolean => {
@@ -108,7 +103,7 @@ export class Zergling implements IComponent {
             angle = Math.atan2(yDiff, xDiff);
 
         const [v, u] = [Math.cos(angle), Math.sin(angle)];
-        const length = Math.sqrt(v*v + u* u);
+        const length = Math.sqrt(v * v + u * u);
         this.dx = v / length;
         this.dy = u / length;
     }
@@ -129,13 +124,13 @@ export class Zergling implements IComponent {
     }
     draw = () => {
         if (this.frame === 0) {
-            this.zergElement.style.width = "10px"
-            this.zergElement.style.height = "10px"
+            this.zergElement.style.width = `${ZERGLING_WIDTH}px`
+            this.zergElement.style.height = `${ZERGLING_HEIGHT}px`
             this.zergElement.style.top = `${Math.round(this.y)}px`;
             this.zergElement.style.left = `${Math.round(this.x)}px`;
         } else {
-            this.zergElement.style.width = "14px"
-            this.zergElement.style.height = "14px"
+            this.zergElement.style.width = `${ZERGLING_WIDTH + 4}px`
+            this.zergElement.style.height =`${ZERGLING_HEIGHT + 4}px`
             this.zergElement.style.top = `${Math.round(this.y - 2)}px`;
             this.zergElement.style.left = `${Math.round(this.x - 2)}px`;
         }
